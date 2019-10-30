@@ -49,31 +49,7 @@ public class ContentFragmentRule extends ExternalResource {
 
     }
 
-
     public void updateContentFragmentContent(String path,
-                                             String value, String element,
-                                             String variation,
-                                             boolean newVersion)
-            throws ClientException {
-
-        // prepare new parameters for the update post
-        FormEntityBuilder requestUpdate = FormEntityBuilder
-                .create()
-                .addParameter("_charset_", "utf-8")
-                .addParameter("contentType", "text/html")
-                .addParameter("newVersion", Boolean.toString(newVersion))
-                .addParameter("element", element)
-                .addParameter("content", value);
-
-        if (StringUtils.isNotBlank(variation)) {
-            requestUpdate.addParameter("variation", variation);
-        }
-
-        // post to add content fragment asset to the content fragment paragraph
-        client.doPost(path + ".cfm.content.json", requestUpdate.build(), null, 200);
-    }
-
-    public void updateStructuredContentFragmentContent(String path,
                                                        String value, String element,
                                                        String variation,
                                                        boolean newVersion,
